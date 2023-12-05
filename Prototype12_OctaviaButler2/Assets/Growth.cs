@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -12,6 +13,7 @@ public class Growth : MonoBehaviour
     public bool isMaxSize = false;
 
     private Vector3 mousePosOffset;
+    
     
     // Start is called before the first frame update
     void Start()
@@ -44,5 +46,21 @@ public class Growth : MonoBehaviour
         } while (timer < growTime);
 
         isMaxSize = true;
+        
+    }
+
+    public Vector3 GetMouseWorldPos()
+    {
+        return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        
+    }
+    public void OnMouseDown()
+    {
+        mousePosOffset = gameObject.transform.position - GetMouseWorldPos();
+    }
+
+    public void OnMouseDrag()
+    {
+        transform.position = GetMouseWorldPos() + mousePosOffset;
     }
 }

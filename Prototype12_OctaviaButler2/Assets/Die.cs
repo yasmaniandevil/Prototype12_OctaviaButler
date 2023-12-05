@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class Die : MonoBehaviour
     public float shrinkTime = 6f;
     public float minSize = .2f;
     public bool isMinSize = false;
+
+    private Vector3 mousePosOffset;
 
     // Start is called before the first frame update
     void Start()
@@ -53,5 +56,20 @@ public class Die : MonoBehaviour
         {
             spriteRender.color = Color.gray;
         }
+    }
+
+    private Vector3 GetMouseWorldPos()
+    {
+        return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    }
+
+    private void OnMouseDown()
+    {
+        mousePosOffset = gameObject.transform.position = GetMouseWorldPos();
+    }
+
+    private void OnMouseDrag()
+    {
+        transform.position = GetMouseWorldPos() + mousePosOffset;
     }
 }
