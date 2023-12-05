@@ -8,24 +8,8 @@ public class Invoke : MonoBehaviour
 {
 
     public float interval = 1f;
-    //private SpriteRenderer _spriteRenderer;
-    // Start is called before the first frame update
-    /*void Start()
-    {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-
-        InvokeRepeating("ToggleSprite", 0f, interval);
-    }
-
-    // Update is called once per frame
-    void ToggleSprite()
-    {
-        if (_spriteRenderer != null)
-        {
-            _spriteRenderer.enabled = !_spriteRenderer.enabled;
-        }
-    }*/
-
+    public int maxSprite = 10;
+    private int spriteCount = 0;
 
     private void Start()
     {
@@ -34,7 +18,14 @@ public class Invoke : MonoBehaviour
 
     void SpawnSprite()
     {
+        if (spriteCount >= maxSprite)
+        {
+            CancelInvoke("SpawnSprite");
+            return;
+        }
+        
         Instantiate(this.gameObject, GetRandomPos(), Quaternion.identity);
+        spriteCount++;
     }
 
     Vector3 GetRandomPos()
