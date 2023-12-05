@@ -27,6 +27,8 @@ public class Growth : MonoBehaviour
         Vector2 startScale = transform.localScale;
         Vector2 maxScale = new Vector2(this.maxSize, this.maxSize);
 
+        timer = 0f;
+
         //do this while timer is less than grow time
         do
         {
