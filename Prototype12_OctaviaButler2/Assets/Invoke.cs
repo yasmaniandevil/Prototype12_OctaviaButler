@@ -32,7 +32,9 @@ public class Invoke : MonoBehaviour
         return new Vector3(Random.Range(-10f, 10f), Random.Range(-10f, 10f), 0);
     }*/
 
-    public float interval = 1f;
+    private Vector3 mousePosOffset;
+
+    public float interval = 4f;
     private SpriteRenderer _spriteRenderer;
 
     private void Start()
@@ -48,4 +50,20 @@ public class Invoke : MonoBehaviour
             _spriteRenderer.enabled = !_spriteRenderer.enabled;
         }
     }
+
+    private Vector3 GetMouseWorldPos()
+    {
+        return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    }
+    
+    private void OnMouseDown()
+    {
+        mousePosOffset = gameObject.transform.position = GetMouseWorldPos();
+    }
+
+    private void OnMouseDrag()
+    {
+        transform.position = GetMouseWorldPos() + mousePosOffset;
+    }
+
 }
