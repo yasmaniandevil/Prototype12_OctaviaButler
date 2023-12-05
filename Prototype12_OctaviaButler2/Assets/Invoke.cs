@@ -7,29 +7,45 @@ using Random = UnityEngine.Random;
 public class Invoke : MonoBehaviour
 {
 
-    public float interval = 1f;
-    public int maxSprite = 10;
-    private int spriteCount = 0;
-
+    /*public float interval = 2f;
+    public float spawnDuration = 100f;
+    
     private void Start()
     {
-        InvokeRepeating("SpawnSprite", 0f, interval);
+        //InvokeRepeating("SpawnSprite", 0f, interval);
+        StartCoroutine(SpawnSpritesCoroutine());
     }
 
-    void SpawnSprite()
+    private IEnumerator SpawnSpritesCoroutine()
     {
-        if (spriteCount >= maxSprite)
+        float startTime = Time.time;
+
+        while (Time.time - startTime < spawnDuration)
         {
-            CancelInvoke("SpawnSprite");
-            return;
+            Instantiate(this.gameObject, GetRandomPos(), Quaternion.identity);
+            yield return new WaitForSeconds(interval);
         }
-        
-        Instantiate(this.gameObject, GetRandomPos(), Quaternion.identity);
-        spriteCount++;
     }
 
     Vector3 GetRandomPos()
     {
         return new Vector3(Random.Range(-10f, 10f), Random.Range(-10f, 10f), 0);
+    }*/
+
+    public float interval = 1f;
+    private SpriteRenderer _spriteRenderer;
+
+    private void Start()
+    {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        InvokeRepeating("ToggleSpriteVisibility", 0f, interval);
+    }
+
+    void ToggleSpriteVisibility()
+    {
+        if (_spriteRenderer != null)
+        {
+            _spriteRenderer.enabled = !_spriteRenderer.enabled;
+        }
     }
 }

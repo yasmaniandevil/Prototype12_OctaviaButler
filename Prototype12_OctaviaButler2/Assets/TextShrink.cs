@@ -9,6 +9,7 @@ public class TextShrink : MonoBehaviour
     public float minSize = .2f;
     public bool isMinSize = false;
     public GameObject objectToShrink;
+    public float wait = 5f;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,7 @@ public class TextShrink : MonoBehaviour
 
     IEnumerator ActiveAfterDelay()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(wait);
         
         objectToShrink.SetActive(true);
         

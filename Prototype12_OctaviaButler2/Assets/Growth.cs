@@ -10,6 +10,8 @@ public class Growth : MonoBehaviour
     public float growTime = 6f;
     public float maxSize = 2f;
     public bool isMaxSize = false;
+
+    private Vector3 mousePosOffset;
     
     // Start is called before the first frame update
     void Start()
