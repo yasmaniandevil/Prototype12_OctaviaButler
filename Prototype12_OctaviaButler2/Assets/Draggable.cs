@@ -13,15 +13,14 @@ public class Draggable : MonoBehaviour
     public void Start()
     {
         audio.gameObject.SetActive(false);
-        audio = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
-        if (this.gameObject == false)
+        /*if (this.gameObject == false)
         {
-            audio.gameObject.SetActive(true);
-        }
+            GetComponent<AudioSource>().gameObject.SetActive(true);
+        }*/
     }
 
     private Vector3 GetMouseWorldPosition()
@@ -44,5 +43,7 @@ public class Draggable : MonoBehaviour
         Debug.Log("mouse up");
         this.gameObject.SetActive(false);
         Instantiate(spriteToAppear, transform.position, Quaternion.identity);
+        //GetComponent<AudioSource>().gameObject.SetActive(true);
+        audio.gameObject.SetActive(true);
     }
 }
